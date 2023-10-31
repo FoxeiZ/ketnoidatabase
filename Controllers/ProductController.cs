@@ -12,6 +12,13 @@ namespace KetNoiDatabase.Controllers
     public class ProductController : Controller
     {
         DBSportStoreEntities database = new DBSportStoreEntities();
+
+        public ActionResult SearchOption(double min = double.MinValue, double max = double.MaxValue)
+        {
+            var list = database.Products.Where(p => (double)p.Price >= min && (double)p.Price <= max).ToList();
+            return View(list);
+        }
+
         public ActionResult Index(string category)
         {
             if (category == null)

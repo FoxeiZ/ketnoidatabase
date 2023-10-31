@@ -69,6 +69,15 @@
     <div class="container-fluid body-content">
         <div class="row">
             <div class="col-md-2">
+                <ul style="text-decoration:none; background-color:greenyellow; margin-top: 20px; list-style-type: none; padding: 10px;"
+                <li>
+                    <a href="/OrderDetail/GroupByTop5" style="color:white;" id="animation-top5">Top 5 sån phäm bán chay nhät></a>
+                </li>
+                <ul style="list-style-type: none">
+                    <li>
+                        <a href="/Product/SearchOption" class="btn btn-default">Search theo giá</a>
+                    </li>
+                </ul>
                 @{Html.RenderAction("CategoryPartial", "Category");}
             </div>
             <div class="col-md-10" id="div-content">

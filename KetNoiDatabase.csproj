@@ -256,6 +256,7 @@
     <Content Include="Views\Customers\Create.cshtml" />
     <Content Include="Views\Category\CategoryPartial.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Product\SearchOption.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
