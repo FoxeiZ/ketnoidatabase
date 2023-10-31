@@ -22,7 +22,7 @@ namespace KetNoiDatabase.Models
     
         public int ID { get; set; }
         public Nullable<System.DateTime> DateOrder { get; set; }
-        public int IDCus { get; set; }
+        public Nullable<int> IDCus { get; set; }
         public string AddressDeliverry { get; set; }
     
         public virtual Customer Customer { get; set; }

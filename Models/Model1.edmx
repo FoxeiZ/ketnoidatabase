@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBSportStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBSportStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminUser">
           <Key>
             <PropertyRef Name="ID" />
@@ -57,11 +57,11 @@
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NamePro" Type="nvarchar(max)" />
           <Property Name="DecriptionPro" Type="nvarchar(max)" />
-          <Property Name="IDCate" Type="nchar" MaxLength="20" />
+          <Property Name="Category" Type="nchar" MaxLength="20" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ImagePro" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__OrderDeta__IDOrd__5629CD9C">
+        <Association Name="FK__OrderDeta__IDOrd__440B1D61">
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -73,7 +73,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IDPro__5535A963">
+        <Association Name="FK__OrderDeta__IDPro__4316F928">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -85,7 +85,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderPro__IDCus__52593CB8">
+        <Association Name="FK__OrderPro__IDCus__403A8C7D">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -105,7 +105,7 @@
               <PropertyRef Name="IDCate" />
             </Principal>
             <Dependent Role="Products">
-              <PropertyRef Name="IDCate" />
+              <PropertyRef Name="Category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -116,15 +116,15 @@
           <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderPro" EntityType="Self.OrderPro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__OrderDeta__IDOrd__5629CD9C" Association="Self.FK__OrderDeta__IDOrd__5629CD9C">
+          <AssociationSet Name="FK__OrderDeta__IDOrd__440B1D61" Association="Self.FK__OrderDeta__IDOrd__440B1D61">
             <End Role="OrderPro" EntitySet="OrderPro" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IDPro__5535A963" Association="Self.FK__OrderDeta__IDPro__5535A963">
+          <AssociationSet Name="FK__OrderDeta__IDPro__4316F928" Association="Self.FK__OrderDeta__IDPro__4316F928">
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderDetail" EntitySet="OrderDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderPro__IDCus__52593CB8" Association="Self.FK__OrderPro__IDCus__52593CB8">
+          <AssociationSet Name="FK__OrderPro__IDCus__403A8C7D" Association="Self.FK__OrderPro__IDCus__403A8C7D">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="OrderPro" EntitySet="OrderPro" />
           </AssociationSet>
@@ -133,8 +133,7 @@
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBSportStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -164,7 +163,7 @@
           <Property Name="NameCus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhoneCus" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="EmailCus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="OrderProes" Relationship="Self.FK__OrderPro__IDCus__52593CB8" FromRole="Customer" ToRole="OrderPro" />
+          <NavigationProperty Name="OrderProes" Relationship="Self.FK__OrderPro__IDCus__403A8C7D" FromRole="Customer" ToRole="OrderPro" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -175,8 +174,8 @@
           <Property Name="IDOrder" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="UnitPrice" Type="Double" />
-          <NavigationProperty Name="OrderPro" Relationship="Self.FK__OrderDeta__IDOrd__5629CD9C" FromRole="OrderDetail" ToRole="OrderPro" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__IDPro__5535A963" FromRole="OrderDetail" ToRole="Products" />
+          <NavigationProperty Name="OrderPro" Relationship="Self.FK__OrderDeta__IDOrd__440B1D61" FromRole="OrderDetail" ToRole="OrderPro" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OrderDeta__IDPro__4316F928" FromRole="OrderDetail" ToRole="Products" />
         </EntityType>
         <EntityType Name="OrderPro">
           <Key>
@@ -186,8 +185,8 @@
           <Property Name="DateOrder" Type="DateTime" Precision="0" />
           <Property Name="IDCus" Type="Int32" />
           <Property Name="AddressDeliverry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__OrderPro__IDCus__52593CB8" FromRole="OrderPro" ToRole="Customer" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IDOrd__5629CD9C" FromRole="OrderPro" ToRole="OrderDetail" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__OrderPro__IDCus__403A8C7D" FromRole="OrderPro" ToRole="Customer" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IDOrd__440B1D61" FromRole="OrderPro" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -196,11 +195,11 @@
           <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NamePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DecriptionPro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IDCate" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ImagePro" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Pro_Category" FromRole="Products" ToRole="Category" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IDPro__5535A963" FromRole="Products" ToRole="OrderDetail" />
+          <NavigationProperty Name="Category1" Relationship="Self.FK_Pro_Category" FromRole="Products" ToRole="Category" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__IDPro__4316F928" FromRole="Products" ToRole="OrderDetail" />
         </EntityType>
         <Association Name="FK_Pro_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -210,11 +209,11 @@
               <PropertyRef Name="IDCate" />
             </Principal>
             <Dependent Role="Products">
-              <PropertyRef Name="IDCate" />
+              <PropertyRef Name="Category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderPro__IDCus__52593CB8">
+        <Association Name="FK__OrderPro__IDCus__403A8C7D">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -226,7 +225,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IDOrd__5629CD9C">
+        <Association Name="FK__OrderDeta__IDOrd__440B1D61">
           <End Role="OrderPro" Type="Self.OrderPro" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -238,7 +237,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__IDPro__5535A963">
+        <Association Name="FK__OrderDeta__IDPro__4316F928">
           <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
           <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -261,15 +260,15 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderPro__IDCus__52593CB8" Association="Self.FK__OrderPro__IDCus__52593CB8">
+          <AssociationSet Name="FK__OrderPro__IDCus__403A8C7D" Association="Self.FK__OrderPro__IDCus__403A8C7D">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="OrderPro" EntitySet="OrderProes" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IDOrd__5629CD9C" Association="Self.FK__OrderDeta__IDOrd__5629CD9C">
+          <AssociationSet Name="FK__OrderDeta__IDOrd__440B1D61" Association="Self.FK__OrderDeta__IDOrd__440B1D61">
             <End Role="OrderPro" EntitySet="OrderProes" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__IDPro__5535A963" Association="Self.FK__OrderDeta__IDPro__5535A963">
+          <AssociationSet Name="FK__OrderDeta__IDPro__4316F928" Association="Self.FK__OrderDeta__IDPro__4316F928">
             <End Role="Products" EntitySet="Products" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
@@ -336,7 +335,7 @@
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="NamePro" ColumnName="NamePro" />
                 <ScalarProperty Name="DecriptionPro" ColumnName="DecriptionPro" />
-                <ScalarProperty Name="IDCate" ColumnName="IDCate" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ImagePro" ColumnName="ImagePro" />
               </MappingFragment>

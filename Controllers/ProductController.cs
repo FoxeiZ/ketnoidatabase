@@ -12,9 +12,18 @@ namespace KetNoiDatabase.Controllers
     public class ProductController : Controller
     {
         DBSportStoreEntities database = new DBSportStoreEntities();
-        public ActionResult Index()
+        public ActionResult Index(string category)
         {
-            return View(database.Products.ToList());
+            if (category == null)
+            {
+                var productList = database.Products.OrderByDescending(x => x.NamePro);
+                return View(productList);
+            }
+            else
+            {
+                var productList = database.Products.OrderByDescending(x => x.NamePro).Where(x => x.Category == category);
+                return View(productList);
+            }
         }
 
         public ActionResult Create()

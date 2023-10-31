@@ -20,7 +20,7 @@ namespace KetNoiDatabase.Controllers
         [HttpPost]
         public ActionResult LoginAccount(AdminUser _user)
         {
-            var check = database.AdminUsers.Where(s => s.ID == _user.ID && s.PasswordUser == _user.PasswordUser).FirstOrDefault();
+            var check = database.AdminUsers.Where(s => s.NameUser == _user.NameUser && s.PasswordUser == _user.PasswordUser).FirstOrDefault();
             if (check == null)
             {
                 ViewBag.ErrorInfo = "SaiInfo";
@@ -29,8 +29,7 @@ namespace KetNoiDatabase.Controllers
             else
             {
                 database.Configuration.ValidateOnSaveEnabled = false;
-                Session["ID"] = _user.ID;
-                Session["PasswordUser"] = _user.PasswordUser;
+                Session["NameUser"] = _user.NameUser;
                 return RedirectToAction("Index", "Product");
             }
         }
